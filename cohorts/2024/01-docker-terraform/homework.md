@@ -23,7 +23,7 @@ Which tag has the following text? - *Automatically remove the container when it 
 - `--delete`
 - `--rc`
 - `--rmc`
-- `--rm`
+- `--rm` THIS
 
 
 ## Question 2. Understanding docker first run 
@@ -33,7 +33,7 @@ Now check the python modules that are installed ( use ```pip list``` ).
 
 What is version of the package *wheel* ?
 
-- 0.42.0
+- 0.42.0 THIS
 - 1.0.0
 - 23.0.1
 - 58.1.0
