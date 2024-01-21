@@ -5,6 +5,11 @@ name = "pypi"
 
 [packages]
 pandas = "*"
+pgcli = "*"
+psycopg = "*"
+psycopg-binary = "*"
+jupyter = "*"
+pyarrow = "*"
 
 [dev-packages]
 

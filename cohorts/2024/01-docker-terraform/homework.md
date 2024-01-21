@@ -23,7 +23,7 @@ Which tag has the following text? - *Automatically remove the container when it 
 - `--delete`
 - `--rc`
 - `--rmc`
-- `--rm` THIS
+- `--rm` **THIS**
 
 
 ## Question 2. Understanding docker first run 
@@ -33,7 +33,7 @@ Now check the python modules that are installed ( use ```pip list``` ).
 
 What is version of the package *wheel* ?
 
-- 0.42.0 THIS
+- 0.42.0 **THIS**
 - 1.0.0
 - 23.0.1
 - 58.1.0
@@ -62,7 +62,10 @@ Tip: started and finished on 2019-09-18.
 Remember that `lpep_pickup_datetime` and `lpep_dropoff_datetime` columns are in the format timestamp (date and hour+min+sec) and not in date.
 
 - 15767
-- 15612
+- 15612 **THIS**
+
+select count(1) from public.green_tripdata_data where cast(lpep_pickup_datetime as date) = '2019-09-18' and cast(lpep_dropoff_datetime as date) = '2019-09-18'
+
 - 15859
 - 89009
 
