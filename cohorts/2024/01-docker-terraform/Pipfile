@@ -10,6 +10,8 @@ psycopg = "*"
 psycopg-binary = "*"
 jupyter = "*"
 pyarrow = "*"
+sqlalchemy = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 

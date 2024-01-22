@@ -64,7 +64,9 @@ Remember that `lpep_pickup_datetime` and `lpep_dropoff_datetime` columns are in 
 - 15767
 - 15612 **THIS**
 
+```sql
 select count(1) from public.green_tripdata_data where cast(lpep_pickup_datetime as date) = '2019-09-18' and cast(lpep_dropoff_datetime as date) = '2019-09-18'
+```
 
 - 15859
 - 89009
@@ -76,9 +78,15 @@ Use the pick up time for your calculations.
 
 - 2019-09-18
 - 2019-09-16
-- 2019-09-26
+- 2019-09-26 **THIS**
 - 2019-09-21
 
+```sql
+SELECT lpep_pickup_datetime
+FROM public.green_tripdata_data
+ORDER BY EXTRACT(day FROM lpep_dropoff_datetime - lpep_pickup_datetime) DESC
+LIMIT 1
+```
 
 ## Question 5. Three biggest pick up Boroughs
 
@@ -86,7 +94,21 @@ Consider lpep_pickup_datetime in '2019-09-18' and ignoring Borough has Unknown
 
 Which were the 3 pick up Boroughs that had a sum of total_amount superior to 50000?
  
-- "Brooklyn" "Manhattan" "Queens"
+- "Brooklyn" "Manhattan" "Queens" **THIS**
+
+```sql
+SELECT 
+	lo."Borough",
+	sum(TOTAL_AMOUNT) as sum_TOTAL_AMOUNT
+FROM PUBLIC.GREEN_TRIPDATA_DATA da
+INNER JOIN public.green_tripdata_lookup lo 
+	ON da."PULocationID" = lo."LocationID"
+	AND lo."Borough" <> 'Unknown'
+where cast(da.lpep_pickup_datetime as date) = '2019-09-18'
+group by lo."Borough"
+having sum(TOTAL_AMOUNT) > 50000
+```
+
 - "Bronx" "Brooklyn" "Manhattan"
 - "Bronx" "Manhattan" "Queens" 
 - "Brooklyn" "Queens" "Staten Island"
@@ -101,10 +123,25 @@ Note: it's not a typo, it's `tip` , not `trip`
 
 - Central Park
 - Jamaica
-- JFK Airport
+- JFK Airport **THIS**
 - Long Island City/Queens Plaza
 
 
+```sql
+SELECT 
+	lodo."Zone",
+	da.tip_amount
+FROM PUBLIC.GREEN_TRIPDATA_DATA da
+INNER JOIN public.green_tripdata_lookup lo 
+	ON da."PULocationID" = lo."LocationID"
+INNER JOIN public.green_tripdata_lookup lodo
+	ON da."DOLocationID" = lodo."LocationID"
+where cast(da.lpep_pickup_datetime as date) >= '2019-09-01' 
+	and cast(da.lpep_pickup_datetime as date) <= '2019-09-30' 
+	and lo."Zone" = 'Astoria'
+order by da.tip_amount desc
+limit 1
+```
 
 ## Terraform
 
@@ -124,7 +161,6 @@ After updating the main.tf and variable.tf files run:
 ```
 terraform apply
 ```
-
 Paste the output of this command into the homework submission form.
 
 
@@ -133,4 +169,4 @@ Paste the output of this command into the homework submission form.
 * Form for submitting: https://courses.datatalks.club/de-zoomcamp-2024/homework/hw01
 * You can submit your homework multiple times. In this case, only the last submission will be used. 
 
-Deadline: 29 January, 23:00 CET
+Deadline: 29 January, 23:00 CET 

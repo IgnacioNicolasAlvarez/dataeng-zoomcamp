@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  db:
+  pg-database:
     image: postgres:13.1
     restart: always
     environment:
@@ -13,10 +13,18 @@ services:
       test: ["CMD", "pg_isready", "-U", "myuser"]
       interval: 10s
       retries: 5
+    networks:
+      - pg-network
   app:
     build:
       context: .
       dockerfile: Dockerfile
-    restart: always
     depends_on:
-      - db
+      - pg-database
+    networks:
+      - pg-network
+  
+networks:
+  default:
+    name: pg-network
+
