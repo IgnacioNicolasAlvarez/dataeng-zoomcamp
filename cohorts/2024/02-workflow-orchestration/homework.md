@@ -23,7 +23,7 @@ The goal will be to construct an ETL pipeline that loads the data, performs some
     - `passenger_count` is greater than 0
     - `trip_distance` is greater than 0 **DONE**
 - Using a Postgres data exporter (SQL or Python), write the dataset to a table called `green_taxi` in a schema `mage`. Replace the table if it already exists. **DONE**
-- Write your data as Parquet files to a bucket in GCP, partioned by `lpep_pickup_date`. Use the `pyarrow` library!
+- Write your data as Parquet files to a bucket in GCP, partioned by `lpep_pickup_date`. Use the `pyarrow` library! **DONE**
 - Schedule your pipeline to run daily at 5AM UTC. **DONE**
 
 ### Questions
@@ -77,7 +77,7 @@ How many columns need to be renamed to snake case?
 
 Once exported, how many partitions (folders) are present in Google Cloud?
 
-* 96
+* 96 **THIS**
 * 56
 * 67
 * 108
