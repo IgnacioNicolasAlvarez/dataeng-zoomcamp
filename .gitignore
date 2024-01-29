@@ -51,3 +51,7 @@ override.tf.json
 .terraformrc
 terraform.rc
 *.csv
+*.parquet
+*.json
+mage_data/
+postgres-db-volume/

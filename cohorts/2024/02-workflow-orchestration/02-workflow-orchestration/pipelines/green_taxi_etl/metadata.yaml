@@ -1,0 +1,128 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - filter_distinct_zero
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: extract_csv_file
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: extract_csv_file
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - to_snake_case_columns
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: fix_date_format
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - filter_distinct_zero
+  uuid: fix_date_format
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - fix_date_format
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: filter_distinct_zero
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - extract_csv_file
+  uuid: filter_distinct_zero
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - load_to_green_taxi_table
+  - save_parquet_to_gcp
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: to_snake_case_columns
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - fix_date_format
+  uuid: to_snake_case_columns
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: save_parquet_to_gcp
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - to_snake_case_columns
+  uuid: save_parquet_to_gcp
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: load_to_green_taxi_table
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - to_snake_case_columns
+  uuid: load_to_green_taxi_table
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2024-01-29 16:32:34.591154+00:00'
+data_integration: null
+description: null
+executor_config: {}
+executor_count: 1
+executor_type: local_python
+extensions: {}
+name: green_taxi_etl
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags: []
+type: python
+updated_at: '2024-01-29 20:11:42'
+uuid: green_taxi_etl
+variables:
+  url_raw_data: https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2020-12.csv.gz**https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2020-11.csv.gz**https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2020-10.csv.gz
+variables_dir: /home/src/mage_data/02-workflow-orchestration
+widgets: []
