@@ -84,7 +84,8 @@ Once exported, how many partitions (folders) are present in Google Cloud?
 
 ## Submitting the solutions
 
-* Form for submitting: https://courses.datatalks.club/de-zoomcamp-2024/homework/hw2
+* Form for submitting: https://courses.datatalks.club/de-zoomcamp-2024/hom
+* ework/hw2
 
 Deadline: February, 5th (Monday), 23:00 CET
 
